@@ -17,7 +17,6 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route element={<PrivateRoutes />}>
             <Route path="/home" element={<HomeSc />} />
-            <Route path="/home" element={<HomeSc />} />
           </Route>
         </Routes>
       </BrowserRouter>
