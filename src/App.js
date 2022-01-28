@@ -10,11 +10,13 @@ function App() {
   return (
     <div className="App">
       <UserAuthContextProvider>
+     
 
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route element={<PrivateRoutes />}>
+            <Route path="/home" element={<HomeSc />} />
             <Route path="/home" element={<HomeSc />} />
           </Route>
         </Routes>
