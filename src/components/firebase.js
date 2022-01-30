@@ -12,3 +12,6 @@ import {getAuth} from "firebase/auth"
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app)
 export default app;
+
+
+// Import the functions you need from the SDKs you need
