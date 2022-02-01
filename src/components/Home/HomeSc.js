@@ -19,7 +19,7 @@ function HomeSc(props) {
           setAllData(snapshot.val());
           setLoading(false);
         } else {
-          console.log("snapshot dont exise");
+          console.log("snapshot dont exist");
         }
       })
       .catch((error) => {
