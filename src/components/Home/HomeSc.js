@@ -9,6 +9,7 @@ function HomeSc(props) {
   const [id, setId] = useState(props.id);
   const [loading, setLoading] = useState(true);
   const [allData, setAllData] = useState([]);
+
   const fetchData = () => {
     // console.log("HI");
     setLoading(true);
@@ -28,18 +29,28 @@ function HomeSc(props) {
   };
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [id]);
+  let topics = [];
+  if (!loading) {
+    let topicsSet = new Set();
+    for (let i = 0; i < allData.length; ++i) {
+      topicsSet.add(allData[i].Topic);
+      // console.log(allData[i].Topic);
+    }
 
+    topics = [...topicsSet];
+    console.log(topicsSet);
+  }
   return (
     <div>
       {loading && <p>Loading</p>}
       {!loading && (
-        <div >
+        <div>
           <h1>DSA 450 Cracker </h1>
           <Grid container>
-            {allData.map((item) => (
-              <Grid items sm={3} xs={16}>
-                <Cards item={item} />
+            {topics.map((item) => (
+              <Grid key={item} sm={3} xs={16}>
+                <Cards Topic={item} />
               </Grid>
             ))}
           </Grid>

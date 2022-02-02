@@ -1,12 +1,16 @@
 import React from "react";
-import { Box, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
+import {
+  Box,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 import { Grid } from "@mui/material";
- function Cards(props) {
-  console.log(props.item.Problem);
-  return (
-    
-    
+function Cards(props) {
 
+  return (
     <div style={{ margin: "2%" }}>
       <CardActionArea
         sx={[
@@ -35,14 +39,14 @@ import { Grid } from "@mui/material";
               {
                 width: 180,
                 height: 180,
-                margin:"auto auto 5px auto"
+                margin: "auto auto 5px auto",
               },
             ]}
             component="png"
             image={require("./structureddata.png")}
           />
           <CardContent>
-            <Typography variant="h5">{props.item.Topic}</Typography>
+            <Typography variant="h5">{props.Topic}</Typography>
             {/* <Typography variant="body1">Kills</Typography>
             <Typography variant="body2" color="red">
               Play!
@@ -51,7 +55,6 @@ import { Grid } from "@mui/material";
         </Card>
       </CardActionArea>
     </div>
-     
   );
 }
 
