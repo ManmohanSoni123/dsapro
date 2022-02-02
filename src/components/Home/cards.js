@@ -5,9 +5,7 @@ import { Grid } from "@mui/material";
   console.log(props.item.Problem);
   return (
     
-    <Grid container direction="column">
-    <Grid item sm={6}>
-
+    
 
     <div style={{ margin: "2%" }}>
       <CardActionArea
@@ -53,8 +51,7 @@ import { Grid } from "@mui/material";
         </Card>
       </CardActionArea>
     </div>
-    </Grid>
-    </Grid>
+     
   );
 }
 

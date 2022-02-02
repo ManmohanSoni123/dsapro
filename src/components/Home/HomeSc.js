@@ -34,16 +34,15 @@ function HomeSc(props) {
     <div>
       {loading && <p>Loading</p>}
       {!loading && (
-        <div>
+        <div >
           <h1>DSA 450 Cracker </h1>
-          {/* <Grid container sm={4}>
-            <Grid items>
-              <Cards />
-            </Grid>
-          </Grid> */}
-          {allData.map((item) => (
-            <Cards item={item}/>
-          ))}
+          <Grid container>
+            {allData.map((item) => (
+              <Grid items sm={3} xs={16}>
+                <Cards item={item} />
+              </Grid>
+            ))}
+          </Grid>
         </div>
       )}
     </div>

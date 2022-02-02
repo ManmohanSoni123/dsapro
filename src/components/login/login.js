@@ -60,6 +60,8 @@ function Login(props) {
         alert("Login Sucessfull");
         // setUser(res);
         // Adddata(res);
+        props.setUserIds(res.user.uid);
+
         navigate("/Home");
         // createUserDocument(res);
       })
