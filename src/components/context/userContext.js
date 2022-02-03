@@ -17,15 +17,17 @@ export function UserAuthContextProvider({ children }) {
         return createUserWithEmailAndPassword(auth,email,password)
     }
     function login(email,password){
+        localStorage.setItem('user',true);
+
         return signInWithEmailAndPassword(auth,email,password)
         // .then((res) =>{
         //     localStorage.setItem('user',res);
             
         // })
     }
-    function logout(){
+      const logout = () => {
         signOut(auth).then((res) => {
-            localStorage.clear('user');
+            localStorage.clear();
             // <Navigate to="/" element = {<Login/>} />
             // navigate("/");
         }).catch(err => {
@@ -38,7 +40,6 @@ export function UserAuthContextProvider({ children }) {
             console.log(currentUser);
              if(currentUser)
             setUser(currentUser);
-             localStorage.setItem('user',currentUser);
          });
          return () => {
              unsubscribe();

@@ -45,7 +45,7 @@ function HomeSc(props) {
     topics = [...topicsSet];
     console.log(topicsSet);
   }
-  function sout(){
+  const  sout = () =>{
     logout()
     navigate("/");
   }

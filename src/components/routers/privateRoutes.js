@@ -5,16 +5,17 @@ import Login from '../login/login';
 import { useUserAuth } from '../context/userContext';
 const PrivateRoutes = ( {children})  => {
   let user = localStorage.getItem('user');  
- if(user){
-  
-  return      <Outlet/>;
-}else
-
-alert("Login First");
+ if(!user){
+  alert("Login First");
 return( 
      <Navigate to="/" />  
 
   );
+}else
+return      <Outlet/>;
+
+
+
 }
 
 export default PrivateRoutes;
