@@ -4,7 +4,7 @@ import Login from '../login/login';
 // import { auth } from '../login/login';
 import { useUserAuth } from '../context/userContext';
 const PrivateRoutes = ( {children})  => {
-  let {user} = useUserAuth();
+  let user = localStorage.getItem('user');  
  if(user){
   
   return      <Outlet/>;

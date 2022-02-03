@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react";
 import Cards from "./cards";
 import app from "../firebase";
 import { getDatabase, ref, child, get } from "firebase/database";
-import { Grid } from "@mui/material";
+import { Grid,Button } from "@mui/material";
+import { useUserAuth } from '../context/userContext';
+import {useNavigate} from "react-router-dom";
 function HomeSc(props) {
   const db = getDatabase();
   const dbRef = ref(db);
   const [id, setId] = useState(props.id);
   const [loading, setLoading] = useState(true);
   const [allData, setAllData] = useState([]);
+  const {logout} = useUserAuth();
+  const navigate = useNavigate();
 
   const fetchData = () => {
     // console.log("HI");
@@ -41,8 +45,13 @@ function HomeSc(props) {
     topics = [...topicsSet];
     console.log(topicsSet);
   }
+  function sout(){
+    logout()
+    navigate("/");
+  }
   return (
     <div>
+    <Button onClick ={sout} variant="contained" >SignOut</Button>
       {loading && <p>Loading</p>}
       {!loading && (
         <div>

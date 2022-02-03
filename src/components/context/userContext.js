@@ -5,25 +5,46 @@ import {
     onAuthStateChanged, signOut
 } from "firebase/auth"
 import {auth} from "../firebase"
+import { Navigate,useNavigate } from "react-router-dom";
+import Login from "../login/login";
 const userAuthContext = createContext(null)
 
 export function UserAuthContextProvider({ children }) {
+    
     const [user,setUser] = useState(null);
+    //  const navigate = useNavigate();
     function register(email,password){
         return createUserWithEmailAndPassword(auth,email,password)
     }
     function login(email,password){
         return signInWithEmailAndPassword(auth,email,password)
+        // .then((res) =>{
+        //     localStorage.setItem('user',res);
+            
+        // })
+    }
+    function logout(){
+        signOut(auth).then((res) => {
+            localStorage.clear('user');
+            // <Navigate to="/" element = {<Login/>} />
+            // navigate("/");
+        }).catch(err => {
+            console.log(err);
+            
+        });
     }
      useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth,(currentUser) => {
-             setUser(currentUser);
+            console.log(currentUser);
+             if(currentUser)
+            setUser(currentUser);
+             localStorage.setItem('user',currentUser);
          });
          return () => {
              unsubscribe();
          }
      });
-    return <userAuthContext.Provider value={{user,register,login }} >{children}</userAuthContext.Provider>
+    return <userAuthContext.Provider value={{user,register,login,logout }} >{children}</userAuthContext.Provider>
 }
 export function useUserAuth() {
     return useContext(userAuthContext)
