@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import Cards from "./cards";
 import app from "../firebase";
 import { getDatabase, ref, child, get } from "firebase/database";
-import { Grid,Button } from "@mui/material";
+import { Grid, Button } from "@mui/material";
 import { useUserAuth } from '../context/userContext';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 function HomeSc(props) {
   const db = getDatabase();
   const dbRef = ref(db);
   const [id, setId] = useState(props.id);
   const [loading, setLoading] = useState(true);
   const [allData, setAllData] = useState([]);
-  const {logout} = useUserAuth();
+  const { logout } = useUserAuth();
   const navigate = useNavigate();
 
   const fetchData = () => {
@@ -45,20 +45,20 @@ function HomeSc(props) {
     topics = [...topicsSet];
     console.log(topicsSet);
   }
-  function sout(){
+  function sout() {
     logout()
     navigate("/");
   }
   return (
     <div>
-    <Button onClick ={sout} variant="contained" >SignOut</Button>
+      <Button onClick={sout} variant="contained" >SignOut</Button>
       {loading && <p>Loading</p>}
       {!loading && (
         <div>
           <h1>DSA 450 Cracker </h1>
           <Grid container>
             {topics.map((item) => (
-              <Grid key={item} sm={3} xs={16}>
+              <Grid key={item} sm={2.4} xs={11}>
                 <Cards Topic={item} />
               </Grid>
             ))}
