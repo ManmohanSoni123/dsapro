@@ -7,10 +7,14 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Grid } from "@mui/material";
+
 function Cards(props) {
-   return (
+
+  const navigate = useNavigate();
+
+  return (
     <div style={{ margin: "2%" }}>
       <CardActionArea
         sx={[
@@ -23,9 +27,9 @@ function Cards(props) {
             },
           },
         ]}
-      onClick={() => {
-         <Navigate to="/problems"/>
-      }}
+        onClick={() => {
+          navigate("/problems")
+        }}
       >
         <Card
           sx={[

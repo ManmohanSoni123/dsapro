@@ -4,6 +4,7 @@ import HomeSc from "./components/Home/HomeSc";
 import Login from "./components/login/login";
 import { UserAuthContextProvider } from "./components/context/userContext";
 import PrivateRoutes from "./components/routers/privateRoutes";
+import ProblemsList from "./components/problems/ProblemsList"
 import { useState } from "react";
 
 function App() {
@@ -20,7 +21,8 @@ function App() {
           <Routes>
             <Route path="/" exact element={<Login setUserIds={setUserIds} />} />
             <Route element={<PrivateRoutes />}>
-              <Route path="/home" exact element={<HomeSc id={userId}/>} />
+              <Route path="/home" exact element={<HomeSc id={userId} />} />
+              <Route path="/problems" exact element={<ProblemsList />} />
             </Route>
           </Routes>
         </BrowserRouter>
