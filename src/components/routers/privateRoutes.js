@@ -8,7 +8,7 @@ const PrivateRoutes = ( {children})  => {
  if(!user){
   alert("Login First");
 return( 
-     <Navigate to="/" />  
+     <Navigate to="/login" />  
 
   );
 }else

@@ -19,11 +19,11 @@ function App() {
       <UserAuthContextProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/" exact element={<Login setUserIds={setUserIds} />} />
             <Route element={<PrivateRoutes />}>
-              <Route path="/home" exact element={<HomeSc id={userId} />} />
+              <Route path="/" exact element={<HomeSc id={userId} />} />
               <Route path="/problems" exact element={<ProblemsList />} />
             </Route>
+            <Route path="/login" exact element={<Login setUserIds={setUserIds} />} />
           </Routes>
         </BrowserRouter>
       </UserAuthContextProvider>

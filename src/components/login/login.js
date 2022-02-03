@@ -6,17 +6,6 @@ import createUserDocument from "../database/createUserDocs";
 import { Box, Grid, Button, TextField } from "@mui/material";
 import { useUserAuth } from "../context/userContext";
 
-//Auth State Changed
-//     const Authorization=createContext();
-//     const [user,setUser] = usestate(null);
-//     useEffect(() =>{
-//         onAuthStateChanged(auth,(user) =>{
-//             if(user)    setUser(user);
-//             else
-//             setUser(null);
-//         });
-//     },[]);
-// export const user;
 
 function Login(props) {
   //formmhandling
@@ -44,7 +33,7 @@ function Login(props) {
         console.log(res);
      
         props.setUserIds(res.user.uid);
-        navigate("/Home");
+        navigate("/");
       })
       .catch((err) => {
         setError(err.message);
@@ -62,7 +51,8 @@ function Login(props) {
         // Adddata(res);
         props.setUserIds(res.user.uid);
 
-        navigate("/Home");
+        navigate("/");
+        
         // createUserDocument(res);
       })
       .catch((err) => {

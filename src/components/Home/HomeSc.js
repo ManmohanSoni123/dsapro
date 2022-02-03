@@ -5,6 +5,7 @@ import { getDatabase, ref, child, get } from "firebase/database";
 import { Grid, Button } from "@mui/material";
 import { useUserAuth } from '../context/userContext';
 import { useNavigate } from "react-router-dom";
+import { EatLoading } from 'react-loadingg';
 function HomeSc(props) {
   const db = getDatabase();
   const dbRef = ref(db);
@@ -47,19 +48,19 @@ function HomeSc(props) {
   }
   const  sout = () =>{
     logout()
-    navigate("/");
+    navigate("/login");
   }
   return (
     <div>
       <Button onClick={sout} variant="contained" >SignOut</Button>
-      {loading && <p>Loading</p>}
+      {loading && <EatLoading speed={5} size="large" color="red"/>}
       {!loading && (
         <div>
           <h1>DSA 450 Cracker </h1>
           <Grid container>
             {topics.map((item) => (
               <Grid key={item} sm={2.4} xs={11}>
-                <Cards Topic={item} />
+                <Cards Topic={item} WholeData={allData} />
               </Grid>
             ))}
           </Grid>
