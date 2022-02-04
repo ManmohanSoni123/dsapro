@@ -3,18 +3,26 @@ import Cards from "./cards";
 import app from "../firebase";
 import { getDatabase, ref, child, get } from "firebase/database";
 import { Grid, Button } from "@mui/material";
-import { useUserAuth } from "../context/userContext";
+// import { useUserAuth } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
+import { useSelector,useDispatch } from "react-redux";
 function HomeSc(props) {
   const db = getDatabase();
   const dbRef = ref(db);
   const [id, setId] = useState(props.id);
   const [loading, setLoading] = useState(true);
   const [allData, setAllData] = useState([]);
-  const { logout } = useUserAuth();
+  // const { logout } = useUserAuth();
   const navigate = useNavigate();
-  console.log(props.id);
-  console.log(id);
+  const dispatch=useDispatch();
+  const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
+  console.log(isLoggedIn);
+  if (isLoggedIn === false) {
+    navigate("/");
+  }
+
+  
+
   const fetchData = () => {
     // console.log("HI");
     setLoading(true);
@@ -24,6 +32,7 @@ function HomeSc(props) {
           console.log(snapshot.val());
           setAllData(snapshot.val());
           setLoading(false);
+          
         } else {
           console.log("snapshot dont exist");
         }
@@ -46,15 +55,15 @@ function HomeSc(props) {
     topics = [...topicsSet];
     console.log(topicsSet);
   }
-  function sout() {
-    logout();
-    navigate("/");
-  }
+  // function sout() {
+  //   logout();
+  //   navigate("/");
+  // }
   return (
     <div>
-      <Button onClick={sout} variant="contained">
+      {/* <Button onClick={sout} variant="contained">
         SignOut
-      </Button>
+      </Button> */}
       {loading && <p>Loading</p>}
       {!loading && (
         <div>
