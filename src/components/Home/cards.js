@@ -11,7 +11,6 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { Grid } from "@mui/material";
 
 function Cards(props) {
-
   const navigate = useNavigate();
 
   return (
@@ -28,7 +27,8 @@ function Cards(props) {
           },
         ]}
         onClick={() => {
-          navigate("/problems")
+          
+          navigate(`/problems/${props.Topic}`);
         }}
       >
         <Card
