@@ -4,18 +4,21 @@ import app from "../firebase";
 import { getDatabase, ref, child, get } from "firebase/database";
 import { Grid, Button } from "@mui/material";
 // import { useUserAuth } from "../context/userContext";
+
 import { WindMillLoading } from 'react-loadingg';
 import { useNavigate } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
+import { sheetDataActions } from "../redux/sheetData";
 function HomeSc(props) {
   const db = getDatabase();
   const dbRef = ref(db);
   const [id, setId] = useState(props.id);
   const [loading, setLoading] = useState(true);
-  const [allData, setAllData] = useState([]);
+  // const [allData, setAllData] = useState([]);
   // const { logout } = useUserAuth();
   const navigate = useNavigate();
   const dispatch=useDispatch();
+  const allData = useSelector((state) => state.Dsa450.Dsasheet);
   const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
   console.log(isLoggedIn);
   if (isLoggedIn === false) {
@@ -31,7 +34,9 @@ function HomeSc(props) {
       .then((snapshot) => {
         if (snapshot.exists()) {
           console.log(snapshot.val());
-          setAllData(snapshot.val());
+          dispatch(sheetDataActions.setDsaData(snapshot.val()))
+          // setAllData(snapshot.val());
+
           setLoading(false);
           
         } else {
@@ -45,6 +50,7 @@ function HomeSc(props) {
   useEffect(() => {
     fetchData();
   }, [id]);
+
   let topics = [];
   if (!loading) {
     let topicsSet = new Set();
@@ -65,7 +71,7 @@ function HomeSc(props) {
       {/* <Button onClick={sout} variant="contained">
         SignOut
       </Button> */}
-      {loading &&<WindMillLoading color="black"/>}
+      {loading &&<WindMillLoading color="black" size="large"/>}
       {!loading && (
         <div>
           <h1>DSA 450 Cracker </h1>
