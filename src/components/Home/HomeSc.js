@@ -35,7 +35,7 @@ function HomeSc(props) {
         if (snapshot.exists()) {
           console.log(snapshot.val());
           dispatch(sheetDataActions.setDsaData(snapshot.val()))
-          // setAllData(snapshot.val());
+        
 
           setLoading(false);
 

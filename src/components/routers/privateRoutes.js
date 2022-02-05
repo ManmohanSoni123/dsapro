@@ -10,10 +10,10 @@ const PrivateRoutes = ({ children }) => {
   let user = localStorage.getItem("user");
   console.log(user);
   if (user === null) {
-    console.log("Idesrd");
     alert("Login First");
     return <Navigate to="/" />;
   } else {
+    console.log("else");
     dispatch(loginActions.login(user));
     return <Outlet />;
   }

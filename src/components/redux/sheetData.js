@@ -8,7 +8,7 @@ const sheetDataSlice = createSlice({
     reducers:{
         setDsaData(state,action){
         const temp = action.payload;
-        console.log(temp);
+        // console.log(temp);
         state.Dsasheet = temp;
         },
 
