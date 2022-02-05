@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
+import { useSelector } from "react-redux";
 import {
   Box,
   Card,
@@ -7,12 +8,44 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-import { Navigate, useNavigate } from "react-router-dom";
+import { getDatabase, ref, child, get, set } from "firebase/database";
+
+import {useNavigate } from "react-router-dom";
 import { Grid } from "@mui/material";
 
 function Cards(props) {
   const navigate = useNavigate();
+  const [doneQuestions,setdoneQuestions] = useState(0);
+  const [isStarted,setisStarted] = useState(true);
+  // const [isStartedQues,setisStartedQues] = useState("Started");
 
+  const db = getDatabase();
+  const dbRef = ref(db);
+  const [userId, setUserId] = useState(
+    useSelector((state) => state.login.loginId)
+  );
+  const fetchSolvedQnsOfUser = () => {
+    // setLoading(true);
+    get(child(dbRef, `user/${userId}/${props.Topic}/done`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+        //  console.log(snapshot.size);
+          setdoneQuestions(snapshot.size);
+          
+          // setLoading(false);
+        } else {
+          setisStarted(false);
+          console.log("snapshot dont exist");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+useEffect( ()=> {
+  fetchSolvedQnsOfUser();
+})
   return (
     <div style={{ margin: "2%" }}>
       <CardActionArea
@@ -27,7 +60,6 @@ function Cards(props) {
           },
         ]}
         onClick={() => {
-
           navigate(`/problems/${props.Topic}`);
         }}
       >
@@ -47,32 +79,13 @@ function Cards(props) {
           />
           <CardContent sx={{ background: 'linear-gradient(45deg, #b380b9 30%, #7575b8 90%)', color: 'black' }} >
             <Typography variant="h5">{props.Topic}</Typography>
-            {/* <Typography variant="body1">Kills</Typography>
-            <Typography variant="body2" color="red">
-              Play!
-            </Typography> */}
+            <Typography variant="body1">Done Questions: {doneQuestions}</Typography>
+            <Typography variant="body2" color = {isStarted?"green":"red"}> {isStarted ?"Started":"Not Yet Started"} </Typography>
           </CardContent>
         </Card>
       </CardActionArea>
     </div>
   );
 }
-
-// function Cards(props) {
-//   console.log(props.item.Problem);
-//   return (
-//     <div>
-//       {/* <Card>
-//         <CardActionArea>
-//             <CardMedia>
-//                 component="img",
-//                 image="focus.png"
-//             </CardMedia>
-//         </CardActionArea>
-//       </Card> */}
-//       <h1>{props.item.Topic}</h1>
-//     </div>
-//   );
-// }
 
 export default Cards;

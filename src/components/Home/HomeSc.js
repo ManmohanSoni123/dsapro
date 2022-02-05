@@ -25,6 +25,7 @@ function HomeSc(props) {
     navigate("/");
   }
 
+  
 
 
   const fetchData = () => {
@@ -71,7 +72,7 @@ function HomeSc(props) {
       {/* <Button onClick={sout} variant="contained">
         SignOut
       </Button> */}
-      {loading && <WindMillLoading color="black" size="small" />}
+      {loading && <WindMillLoading color="black" size="large" />}
       {!loading && (
         <div>
           <Box sx={{ marginX: '90.5%', width: '10%', marginTop: '1%' }} >

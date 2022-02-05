@@ -62,8 +62,9 @@ function ProblemsList() {
     get(child(dbRef, `user/${userId}/${param.dsType}/done`))
       .then((snapshot) => {
         if (snapshot.exists()) {
+        //  console.log(snapshot.size);
           setSolvedQuestions(snapshot.val());
-
+          
           setLoading(false);
         } else {
           console.log("snapshot dont exist");
@@ -134,7 +135,7 @@ function ProblemsList() {
   // console.log(userId);
   return (
     <>
-      {loading && <WindMillLoading color="black" size="small" />}
+      {loading && <WindMillLoading color="black" size="large" />}
       {!loading && (
         <div style={{ marginTop: "7%" }}>
           <div style={{ marginBottom: "2%" }}>
