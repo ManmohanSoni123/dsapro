@@ -21,8 +21,8 @@ function Cards(props) {
             width: 230,
             height: 300,
             "&:hover": {
-              boxShadow: "0 6px 12px 0 #263238",
-              transform: "scale(1.1)",
+              boxShadow: "0 6px 12px 0 #d4a5d0",
+              transform: "scale(1.04)",
             },
           },
         ]}
