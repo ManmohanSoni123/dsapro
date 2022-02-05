@@ -18,6 +18,7 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import app from "../firebase";
 import { getDatabase, ref, child, get } from "firebase/database";
 import { useSelect } from "react-redux";
@@ -108,56 +109,19 @@ function ProblemsList(props) {
                 </TableRow>
               </TableHead>
               <TableBody>
+               { filteredQuestions.map((items) => (
+
                 <TableRow>
                   <TableCell align="center">1.</TableCell>
-                  <TableCell align="center">
-                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                  <TableCell align="center" style={{color:"white"}}>
+                   {items.Problem}
                   </TableCell>
                   <TableCell align="center">X Incomplete</TableCell>
                   <TableCell align="center">
                     <Checkbox />
                   </TableCell>
                 </TableRow>
-                <TableRow>
-                  <TableCell align="center">1.</TableCell>
-                  <TableCell align="center">
-                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                  </TableCell>
-                  <TableCell align="center">X Incomplete</TableCell>
-                  <TableCell align="center">
-                    <Checkbox />
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell align="center">1.</TableCell>
-                  <TableCell align="center">
-                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                  </TableCell>
-                  <TableCell align="center">X Incomplete</TableCell>
-                  <TableCell align="center">
-                    <Checkbox />
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell align="center">1.</TableCell>
-                  <TableCell align="center">
-                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                  </TableCell>
-                  <TableCell align="center">X Incomplete</TableCell>
-                  <TableCell align="center">
-                    <Checkbox />
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell align="center">1.</TableCell>
-                  <TableCell align="center">
-                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                  </TableCell>
-                  <TableCell align="center">X Incomplete</TableCell>
-                  <TableCell align="center">
-                    <Checkbox />
-                  </TableCell>
-                </TableRow>
+               ))}
               </TableBody>
             </Table>
           </TableContainer>

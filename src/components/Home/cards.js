@@ -21,26 +21,19 @@ function Cards(props) {
             width: 230,
             height: 300,
             "&:hover": {
-              boxShadow: "0 6px 12px 0 #263238",
-              transform: "scale(1.1)",
+              boxShadow: "0 6px 12px 0 #d4a5d0",
+              transform: "scale(1.04)",
             },
           },
         ]}
         onClick={() => {
-          
+
           navigate(`/problems/${props.Topic}`);
         }}
       >
-        <Card
-          sx={[
-            {
-              width: 230,
-              height: 300,
-              backgroundColor: "#e0e0e0",
-              cursor: "pointer",
-            },
-          ]}
-        >
+        <Card sx={[{
+          width: 230, height: 300, background: 'linear-gradient(45deg, #b380b9 30%, #7575b8 90%)', color: 'black', cursor: "pointer",
+        },]}>
           <CardMedia
             sx={[
               {
@@ -52,7 +45,7 @@ function Cards(props) {
             component="png"
             image={require("./structureddata.png")}
           />
-          <CardContent>
+          <CardContent sx={{ background: 'linear-gradient(45deg, #b380b9 30%, #7575b8 90%)', color: 'black' }} >
             <Typography variant="h5">{props.Topic}</Typography>
             {/* <Typography variant="body1">Kills</Typography>
             <Typography variant="body2" color="red">
