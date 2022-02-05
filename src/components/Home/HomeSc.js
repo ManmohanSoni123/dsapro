@@ -4,6 +4,7 @@ import app from "../firebase";
 import { getDatabase, ref, child, get } from "firebase/database";
 import { Grid, Button } from "@mui/material";
 // import { useUserAuth } from "../context/userContext";
+import { WindMillLoading } from 'react-loadingg';
 import { useNavigate } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
 function HomeSc(props) {
@@ -64,7 +65,7 @@ function HomeSc(props) {
       {/* <Button onClick={sout} variant="contained">
         SignOut
       </Button> */}
-      {loading && <p>Loading</p>}
+      {loading &&<WindMillLoading color="black"/>}
       {!loading && (
         <div>
           <h1>DSA 450 Cracker </h1>
