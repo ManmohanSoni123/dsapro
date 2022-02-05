@@ -12,12 +12,12 @@ function App() {
       {/* <UserAuthContextProvider> */}
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login />} />
           <Route path="/problems" element={<Navigate replace to="/home" />} />
           <Route element={<PrivateRoutes />}>
-            <Route path="/home" element={<HomeSc />} />
+            <Route path="/" element={<HomeSc />} />
             <Route path="/problems/:dsType" element={<ProblemsList />} />
           </Route>
+            <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
       {/* </UserAuthContextProvider> */}

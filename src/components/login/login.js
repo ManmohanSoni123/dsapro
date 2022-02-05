@@ -36,7 +36,7 @@ function Login() {
         localStorage.setItem("user", user.uid);
 
         dispatch(loginActions.login(user.uid));
-        navigate("/home");
+        navigate("/");
         // ...
       })
       .catch((error) => {

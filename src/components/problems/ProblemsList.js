@@ -24,7 +24,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { sheetDataActions } from "../redux/sheetData";
 import { WindMillLoading } from "react-loadingg";
-
+import { Link } from "react-router-dom";
 function ProblemsList() {
   const param = useParams();
 
@@ -144,7 +144,8 @@ function ProblemsList() {
               Topic_Name
             </Typography>
             <Typography variant="body1" align="center">
-              Topics/Topic_Name
+             <Link to="/"> Topics/ </Link>
+             <Link to={"/problems/"+param.dsType}> {param.dsType} </Link>
             </Typography>
           </div>
           <div>

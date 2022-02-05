@@ -12,6 +12,9 @@ const loginSlice = createSlice({
       state.loginId = userId;
       state.isLoggedIn = true;
     },
+    logout(state){
+      state.isLoggedIn = false; 
+    }
   },
 });
 

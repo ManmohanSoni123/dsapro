@@ -11,7 +11,7 @@ const PrivateRoutes = ({ children }) => {
   console.log(user);
   if (user === null) {
     alert("Login First");
-    return <Navigate to="/" />;
+    return <Navigate to="/login" />;
   } else {
     console.log("else");
     dispatch(loginActions.login(user));

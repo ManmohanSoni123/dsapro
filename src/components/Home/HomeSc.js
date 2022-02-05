@@ -4,11 +4,13 @@ import app from "../firebase";
 import { getDatabase, ref, child, get } from "firebase/database";
 import { Grid, Button, Card, CardContent, Typography, Paper, Box } from "@mui/material";
 // import { useUserAuth } from "../context/userContext";
-
-import { WindMillLoading } from 'react-loadingg';
+import { auth } from "../firebase";
+ import { WindMillLoading } from 'react-loadingg';
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { sheetDataActions } from "../redux/sheetData";
+import { signOut } from "firebase/auth";
+import { loginActions } from "../redux/auth";
 function HomeSc(props) {
   const db = getDatabase();
   const dbRef = ref(db);
@@ -21,8 +23,9 @@ function HomeSc(props) {
   const allData = useSelector((state) => state.Dsa450.Dsasheet);
   const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
   console.log(isLoggedIn);
+  
   if (isLoggedIn === false) {
-    navigate("/");
+    navigate("/login");
   }
 
   
@@ -63,10 +66,12 @@ function HomeSc(props) {
     topics = [...topicsSet];
     console.log(topicsSet);
   }
-  // function sout() {
-  //   logout();
-  //   navigate("/");
-  // }
+  function sout() {
+    signOut(auth);
+    localStorage.clear();
+    dispatch(loginActions.logout())
+    navigate("/login");
+  }
   return (
     <div>
       {/* <Button onClick={sout} variant="contained">
@@ -76,7 +81,7 @@ function HomeSc(props) {
       {!loading && (
         <div>
           <Box sx={{ marginX: '90.5%', width: '10%', marginTop: '1%' }} >
-            <Button variant="contained" sx={{ background: 'linear-gradient(45deg, #b380b9 30%, #7575b8 90%)', color: 'black', '&:hover': { background: 'linear-gradient(45deg, #b380b9 30%, #7575b8 90%)', color: 'black' } }}>
+            <Button onClick={sout} variant="contained" sx={{ background: 'linear-gradient(45deg, #b380b9 30%, #7575b8 90%)', color: 'black', '&:hover': { background: 'linear-gradient(45deg, #b380b9 30%, #7575b8 90%)', color: 'black' } }}>
               Sign Out
             </Button>
           </Box>
