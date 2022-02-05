@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import Cards from "./cards";
 import app from "../firebase";
 import { getDatabase, ref, child, get } from "firebase/database";
-import { Grid, Button } from "@mui/material";
+import { Grid, Button, Card, CardContent, Typography, Paper, Box } from "@mui/material";
 // import { useUserAuth } from "../context/userContext";
 
 import { WindMillLoading } from 'react-loadingg';
 import { useNavigate } from "react-router-dom";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { sheetDataActions } from "../redux/sheetData";
 function HomeSc(props) {
   const db = getDatabase();
@@ -17,7 +17,7 @@ function HomeSc(props) {
   // const [allData, setAllData] = useState([]);
   // const { logout } = useUserAuth();
   const navigate = useNavigate();
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const allData = useSelector((state) => state.Dsa450.Dsasheet);
   const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
   console.log(isLoggedIn);
@@ -25,7 +25,7 @@ function HomeSc(props) {
     navigate("/");
   }
 
-  
+
 
   const fetchData = () => {
     // console.log("HI");
@@ -38,7 +38,7 @@ function HomeSc(props) {
           // setAllData(snapshot.val());
 
           setLoading(false);
-          
+
         } else {
           console.log("snapshot dont exist");
         }
@@ -71,20 +71,33 @@ function HomeSc(props) {
       {/* <Button onClick={sout} variant="contained">
         SignOut
       </Button> */}
-      {loading &&<WindMillLoading color="black" size="large"/>}
+      {loading && <WindMillLoading color="black" size="small" />}
       {!loading && (
         <div>
-          <h1>DSA 450 Cracker </h1>
-          <Grid container>
+          <Box sx={{ marginX: '90.5%', width: '10%', marginTop: '1%' }} >
+            <Button variant="contained" sx={{ background: 'linear-gradient(45deg, #b380b9 30%, #7575b8 90%)', color: 'black', '&:hover': { background: 'linear-gradient(45deg, #b380b9 30%, #7575b8 90%)', color: 'black' } }}>
+              Sign Out
+            </Button>
+          </Box>
+          <Card component={Paper} elevation={15} sx={{
+            borderRadius: "10px", width: 350, height: 100, margin: 'auto', color: 'black',
+            background: 'linear-gradient(45deg, #b380b9 30%, #7575b8 90%)', color: 'black'
+          }}>
+            <CardContent  >
+              <Typography variant="h4" sx={{ margin: 'auto' }}>DSA Crackers</Typography>
+            </CardContent>
+          </Card>
+          <Grid container sx={{ background: 'focus.png', marginTop: '2%' }} >
             {topics.map((item) => (
-              <Grid key={item} sm={3} xs={16}>
+              <Grid key={item} sm={2.4}>
                 <Cards Topic={item} />
               </Grid>
             ))}
           </Grid>
         </div>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 }
 
