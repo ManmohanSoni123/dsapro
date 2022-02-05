@@ -1,9 +1,11 @@
 import React from "react";
+import { Box, Paper, Button } from '@mui/material';
 import app from "../firebase";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { loginActions } from "../redux/auth";
 import { useNavigate } from "react-router-dom";
+import b2 from './b2.jpg';
 
 function Login() {
   const dispatch = useDispatch();
@@ -52,7 +54,15 @@ function Login() {
   };
   return (
     <div>
-      <button onClick={handleSignup}>Signup</button>
+      <div style={{
+        backgroundImage: `url(${b2})`, height: '99vh', backgroundPosition: 'center', backgroundSize: 'cover',
+      }} />
+      <Box component={Paper} elevation={15} sx={{ width: 'fit-content', position: 'absolute', top: '50%', left: '50%', margin: '-25px 0 0 -25px' }} > <Button onClick={handleSignup} size='large' variant='contained' sx={{
+        background: '#b380b9', '&:hover': {
+          background: '#7575b8',
+          transform: 'scale(1.5)'
+        }
+      }} >Sign In</Button></Box>
     </div>
   );
 }
