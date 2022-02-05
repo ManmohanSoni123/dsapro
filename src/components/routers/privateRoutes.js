@@ -1,21 +1,22 @@
-import React from 'react';
-import { Outlet, Navigate } from 'react-router-dom';
-import Login from '../login/login';
+import React from "react";
+import { Outlet, Navigate } from "react-router-dom";
+import Login from "../login/login";
 // import { auth } from '../login/login';
-import { useUserAuth } from '../context/userContext';
-const PrivateRoutes = ( {children})  => {
-  let user = localStorage.getItem('user');  
- if(!user){
-  alert("Login First");
-return( 
-     <Navigate to="/login" />  
-
-  );
-}else
-return      <Outlet/>;
-
-
-
-}
+import { useDispatch } from "react-redux";
+import { useUserAuth } from "../context/userContext";
+import { loginActions } from "../redux/auth";
+const PrivateRoutes = ({ children }) => {
+  const dispatch = useDispatch();
+  let user = localStorage.getItem("user");
+  console.log(user);
+  if (user === null) {
+    console.log("Idesrd");
+    alert("Login First");
+    return <Navigate to="/" />;
+  } else {
+    dispatch(loginActions.login(user));
+    return <Outlet />;
+  }
+};
 
 export default PrivateRoutes;
