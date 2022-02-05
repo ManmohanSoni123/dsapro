@@ -7,16 +7,15 @@ import PrivateRoutes from "./components/routers/privateRoutes";
 import ProblemsList from "./components/problems/ProblemsList";
 
 function App() {
-  
   return (
     <div className="App">
       {/* <UserAuthContextProvider> */}
       <BrowserRouter>
         <Routes>
-          <Route path="/"  element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route element={<PrivateRoutes />}>
             <Route path="/home" element={<HomeSc />} />
-            <Route path="/problems/:dsType" exact element={<ProblemsList />} />
+            <Route path="/problems/:dsType" element={<ProblemsList />} />
           </Route>
         </Routes>
       </BrowserRouter>

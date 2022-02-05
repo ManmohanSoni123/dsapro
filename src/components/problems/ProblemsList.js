@@ -20,35 +20,19 @@ import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import { useParams } from "react-router-dom";
 import app from "../firebase";
 import { getDatabase, ref, child, get } from "firebase/database";
+import { useSelect } from "react-redux";
 
 function ProblemsList(props) {
   const param = useParams();
 
   const db = getDatabase();
+  
   const dbRef = ref(db);
   const [loading, setLoading] = useState(true);
   const [id, setId] = useState(props.id);
 
   console.log(param.dsType);
   console.log(id);
-  // const fetchData = () => {
-  //   setLoading(true);
-  //   get(child(dbRef, "Sheet1/"))
-  //     .then((snapshot) => {
-  //       if (snapshot.exists()) {
-  //         console.log(snapshot.val());
-  //         setLoading(false);
-  //       } else {
-  //         console.log("snapshot dont exist");
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // };
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
 
   return (
     <div style={{ marginTop: "7%" }}>
