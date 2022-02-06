@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
   Box,
@@ -10,13 +10,13 @@ import {
 } from "@mui/material";
 import { getDatabase, ref, child, get, set } from "firebase/database";
 
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Grid } from "@mui/material";
 
 function Cards(props) {
   const navigate = useNavigate();
-  const [doneQuestions,setdoneQuestions] = useState(0);
-  const [isStarted,setisStarted] = useState(true);
+  const [doneQuestions, setdoneQuestions] = useState(0);
+  const [isStarted, setisStarted] = useState(true);
   // const [isStartedQues,setisStartedQues] = useState("Started");
 
   const db = getDatabase();
@@ -29,13 +29,12 @@ function Cards(props) {
     get(child(dbRef, `user/${userId}/${props.Topic}/done`))
       .then((snapshot) => {
         if (snapshot.exists()) {
-        //  console.log(snapshot.size);
           setdoneQuestions(snapshot.size);
-          
+
           // setLoading(false);
         } else {
           setisStarted(false);
-          console.log("snapshot dont exist");
+          // console.log("snapshot dont exist");
         }
       })
       .catch((error) => {
@@ -43,9 +42,9 @@ function Cards(props) {
       });
   };
 
-useEffect( ()=> {
-  fetchSolvedQnsOfUser();
-})
+  useEffect(() => {
+    fetchSolvedQnsOfUser();
+  });
   return (
     <div style={{ margin: "2%" }}>
       <CardActionArea
@@ -63,9 +62,17 @@ useEffect( ()=> {
           navigate(`/problems/${props.Topic}`);
         }}
       >
-        <Card sx={[{
-          width: 230, height: 300, background: 'linear-gradient(45deg, #b380b9 30%, #7575b8 90%)', color: 'black', cursor: "pointer",
-        },]}>
+        <Card
+          sx={[
+            {
+              width: 230,
+              height: 300,
+              background: "linear-gradient(45deg, #b380b9 30%, #7575b8 90%)",
+              color: "black",
+              cursor: "pointer",
+            },
+          ]}
+        >
           <CardMedia
             sx={[
               {
@@ -77,10 +84,20 @@ useEffect( ()=> {
             component="png"
             image={require("./structureddata.png")}
           />
-          <CardContent sx={{ background: 'linear-gradient(45deg, #b380b9 30%, #7575b8 90%)', color: 'black' }} >
+          <CardContent
+            sx={{
+              background: "linear-gradient(45deg, #b380b9 30%, #7575b8 90%)",
+              color: "black",
+            }}
+          >
             <Typography variant="h5">{props.Topic}</Typography>
-            <Typography variant="body1">Done Questions: {doneQuestions}</Typography>
-            <Typography variant="body2" color = {isStarted?"green":"red"}> {isStarted ?"Started":"Not Yet Started"} </Typography>
+            <Typography variant="body1">
+              Done Questions: {doneQuestions}/{props.Total}
+            </Typography>
+            <Typography variant="body2" color={isStarted ? "green" : "red"}>
+              {" "}
+              {isStarted ? "Started" : "Not Yet Started"}{" "}
+            </Typography>
           </CardContent>
         </Card>
       </CardActionArea>
