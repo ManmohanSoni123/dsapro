@@ -217,7 +217,7 @@ function ProblemsList() {
                         align="center"
                         sx={{ backgroundColor: "#37474f", color: "white" }}
                       >
-                        Done
+                        Done({solvedQuestions.length}/{toPrintData.length})
                       </TableCell>
                     </TableRow>
                   </TableHead>
@@ -245,7 +245,14 @@ function ProblemsList() {
                             </a>
                           </TableCell>
                           <TableCell align="center">
-                            {item.solved ? "Solved" : "Unsolved"}
+                            <h4
+                              style={{
+                                color: item.solved ? "yellow" : "red",
+                                fontSize: "1rem",
+                              }}
+                            >
+                              {item.solved ? "Solved" : "Unsolved"}
+                            </h4>
                           </TableCell>
                           <TableCell align="center">
                             <Checkbox
