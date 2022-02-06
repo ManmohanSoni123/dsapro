@@ -64,7 +64,7 @@ useEffect( ()=> {
         }}
       >
         <Card sx={[{
-          width: 230, height: 300, background: 'linear-gradient(45deg, #b380b9 30%, #7575b8 90%)', color: 'black', cursor: "pointer",
+          width: 230, height: 303, background: 'linear-gradient(45deg, #b380b9 30%, #7575b8 90%)', color: 'black', cursor: "pointer",
         },]}>
           <CardMedia
             sx={[

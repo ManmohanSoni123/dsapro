@@ -93,9 +93,9 @@ function HomeSc(props) {
               <Typography variant="h4" sx={{ margin: 'auto' }}>DSA Crackers</Typography>
             </CardContent>
           </Card>
-          <Grid container sx={{ background: 'focus.png', marginTop: '2%' }} >
+          <Grid container align="center" rowSpacing={12} sx={{ background: 'focus.png', marginTop: '2%' }} >
             {topics.map((item) => (
-              <Grid key={item} sm={2.4}>
+              <Grid key={item} xl={12} sm={3} xs={6}>
                 <Cards Topic={item} />
               </Grid>
             ))}
