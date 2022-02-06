@@ -71,7 +71,7 @@ function HomeSc(props) {
       }
     }
     for (var key in topicMap) {
-      topics.push({ Topic:key,Total: topicMap[key] });
+      topics.push({ Topic: key, Total: topicMap[key] });
     }
   }
   function sout() {
@@ -88,7 +88,6 @@ function HomeSc(props) {
       {loading && <WindMillLoading color="black" size="large" />}
       {!loading && (
         <div>
-          
           <Box sx={{ marginX: "90.5%", width: "10%", marginTop: "1%" }}>
             <Button
               onClick={sout}
@@ -127,7 +126,7 @@ function HomeSc(props) {
           </Card>
           <Grid container sx={{ background: "focus.png", marginTop: "2%" }}>
             {topics.map((item) => (
-              <Grid key={item.Topic} sm={2.4}>
+              <Grid key={item.Topic} xl={12} sm={3} xs={6}>
                 <Cards Topic={item.Topic} Total={item.Total} />
               </Grid>
             ))}
