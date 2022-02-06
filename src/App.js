@@ -11,6 +11,8 @@ const ProblemsList = React.lazy(() =>
   import("./components/problems/ProblemsList")
 );
 const PageNotFound = React.lazy(() =>
+  import("./components/pageNotFound/PageNotFound")
+);
 
 function App() {
   return (
@@ -18,12 +20,13 @@ function App() {
       <BrowserRouter>
         <Suspense fallback={<WindMillLoading color="black" size="large" />}>
           <Routes>
-            <Route path="/problems" element={<Navigate replace to="/home" />} />
+            <Route path="/problems" element={<Navigate replace to="/" />} />
             <Route element={<PrivateRoutes />}>
               <Route path="/" element={<HomeSc />} />
               <Route path="/problems/:dsType" element={<ProblemsList />} />
             </Route>
             <Route path="/login" element={<Login />} />
+            <Route path="*" element={<PageNotFound/>} />
           </Routes>
         </Suspense>
       </BrowserRouter>
