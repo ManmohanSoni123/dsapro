@@ -33,7 +33,7 @@ function ProblemsList() {
   const dbRef = ref(db);
   const [loading, setLoading] = useState(true);
   const [solvedQuestions, setSolvedQuestions] = useState([]);
-  const [searchItem,setsearchItem] = useState("");
+  const [searchItem, setsearchItem] = useState("");
   const dispatch = useDispatch();
   // console.log(param.dsType);
   const allData = useSelector((state) => state.Dsa450.Dsasheet);
@@ -63,9 +63,9 @@ function ProblemsList() {
     get(child(dbRef, `user/${userId}/${param.dsType}/done`))
       .then((snapshot) => {
         if (snapshot.exists()) {
-        //  console.log(snapshot.size);
+          //  console.log(snapshot.size);
           setSolvedQuestions(snapshot.val());
-          
+
           setLoading(false);
         } else {
           console.log("snapshot dont exist");
@@ -134,6 +134,10 @@ function ProblemsList() {
     pushSolvedInDatabase(tempArray);
   };
   // console.log(userId);
+  const resetHandler = () => {
+    setSolvedQuestions([]);
+    pushSolvedInDatabase([]);
+  };
   return (
     <>
       {loading && <WindMillLoading color="black" size="large" />}
@@ -145,8 +149,8 @@ function ProblemsList() {
               {param.dsType}
             </Typography>
             <Typography variant="body1" align="center">
-             <Link to="/"> Topics/ </Link>
-             <Link to={"/problems/"+param.dsType}> {param.dsType} </Link>
+              <Link to="/"> Topics/ </Link>
+              <Link to={"/problems/" + param.dsType}> {param.dsType} </Link>
             </Typography>
           </div>
           <div>
@@ -176,7 +180,7 @@ function ProblemsList() {
                 }}
               />
               <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-              <Button>Reset</Button>
+              <Button onClick={resetHandler}>Reset</Button>
             </Paper>
           </div>
           <div style={{ marginTop: "2%" }}>
@@ -218,36 +222,41 @@ function ProblemsList() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {toPrintData.filter((item) => {
-                      if(searchItem == "")
-                      return(item.Problem);
-                      else if(item.Problem.toLowerCase().includes(searchItem.toLowerCase()))
-                      return (item);
-                    }).map((item) => (
-                      <TableRow key={item.sNo}>
-                        <TableCell align="center">{item.sNo}</TableCell>
-                        <TableCell align="center" style={{ color: "white" }}>
-                          <a
-                            href={item.URL}
-                            style={{ color: "white", textDecoration: "none" }}
-                            target="_blank"
-                          >
-                            {item.Problem}
-                          </a>
-                        </TableCell>
-                        <TableCell align="center">
-                          {item.solved ? "Solved" : "Unsolved"}
-                        </TableCell>
-                        <TableCell align="center">
-                          <Checkbox
-                            checked={item.solved}
-                            onChange={(e) =>
-                              changeHandler(item.idOfQn, item.sNo)
-                            }
-                          />
-                        </TableCell>
-                      </TableRow>
-                    ))}
+                    {toPrintData
+                      .filter((item) => {
+                        if (searchItem == "") return item.Problem;
+                        else if (
+                          item.Problem.toLowerCase().includes(
+                            searchItem.toLowerCase()
+                          )
+                        )
+                          return item;
+                      })
+                      .map((item) => (
+                        <TableRow key={item.sNo}>
+                          <TableCell align="center">{item.sNo}</TableCell>
+                          <TableCell align="center" style={{ color: "white" }}>
+                            <a
+                              href={item.URL}
+                              style={{ color: "white", textDecoration: "none" }}
+                              target="_blank"
+                            >
+                              {item.Problem}
+                            </a>
+                          </TableCell>
+                          <TableCell align="center">
+                            {item.solved ? "Solved" : "Unsolved"}
+                          </TableCell>
+                          <TableCell align="center">
+                            <Checkbox
+                              checked={item.solved}
+                              onChange={(e) =>
+                                changeHandler(item.idOfQn, item.sNo)
+                              }
+                            />
+                          </TableCell>
+                        </TableRow>
+                      ))}
                   </TableBody>
                 </Table>
               </TableContainer>
