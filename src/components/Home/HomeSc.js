@@ -124,7 +124,7 @@ function HomeSc(props) {
               </Typography>
             </CardContent>
           </Card>
-          <Grid container sx={{ background: "focus.png", marginTop: "2%" }}>
+          <Grid container align="center" sx={{ background: "focus.png", marginTop: "2%" }}>
             {topics.map((item) => (
               <Grid key={item.Topic} xl={12} sm={3} xs={6}>
                 <Cards Topic={item.Topic} Total={item.Total} />

@@ -190,32 +190,32 @@ function ProblemsList() {
               sx={{ width: "70%", overflow: "hidden", margin: "auto" }}
             >
               <TableContainer
-                sx={{ maxHeight: 440, backgroundColor: "#455a64" }}
+                sx={{ maxHeight: 440, backgroundColor: "#C993C7" }}
               >
                 <Table stickyHeader>
                   <TableHead>
                     <TableRow>
                       <TableCell
                         align="center"
-                        sx={{ backgroundColor: "#37474f", color: "white" }}
+                        sx={{ backgroundColor: "#975EAB", color: "white" }}
                       >
                         ID
                       </TableCell>
                       <TableCell
                         align="center"
-                        sx={{ backgroundColor: "#37474f", color: "white" }}
+                        sx={{ backgroundColor: "#975EAB", color: "white" }}
                       >
                         Question(s)
                       </TableCell>
                       <TableCell
                         align="center"
-                        sx={{ backgroundColor: "#37474f", color: "white" }}
+                        sx={{ backgroundColor: "#975EAB", color: "white" }}
                       >
                         Status
                       </TableCell>
                       <TableCell
                         align="center"
-                        sx={{ backgroundColor: "#37474f", color: "white" }}
+                        sx={{ backgroundColor: "#975EAB", color: "white" }}
                       >
                         Done({solvedQuestions.length}/{toPrintData.length})
                       </TableCell>
@@ -247,7 +247,7 @@ function ProblemsList() {
                           <TableCell align="center">
                             <h4
                               style={{
-                                color: item.solved ? "yellow" : "red",
+                                color: item.solved ? "green" : "red",
                                 fontSize: "1rem",
                               }}
                             >
