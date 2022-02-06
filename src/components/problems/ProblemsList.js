@@ -145,7 +145,7 @@ function ProblemsList() {
       {!loading && (
         <div style={{ marginTop: "7%" }}>
           <div style={{ marginBottom: "2%" }}>
-            <Typography variant="h3" align="center" sx={{ color: "#431e42" }}>
+            <Typography variant="h3" align="center" sx={{ color: "#431e42",fontFamily: "'Arvo', serif" }}>
               <AutoAwesomeIcon />
               {param.dsType}
             </Typography>
@@ -242,7 +242,9 @@ function ProblemsList() {
                               style={{ color: "white", textDecoration: "none" }}
                               target="_blank"
                             >
+                            <Typography sx={{fontFamily: "'Poppins', sans-serif" }}>
                               {item.Problem}
+                            </Typography>
                             </a>
                           </TableCell>
                           <TableCell align="center">

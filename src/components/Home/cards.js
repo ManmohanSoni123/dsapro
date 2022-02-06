@@ -82,11 +82,11 @@ function Cards(props) {
               color: "black",
             }}
           >
-            <Typography variant="h6">{props.Topic}</Typography>
-            <Typography variant="body2">
+            <Typography variant="h6" sx={{fontFamily:"'Roboto Slab', serif" }}>{props.Topic}</Typography>
+            <Typography variant="body2"  sx={{fontFamily: "'Poppins', sans-serif" }}>
               Done Questions: {doneQuestions}/{props.Total}
             </Typography>
-            <Typography variant="body2" color={isStarted ? "green" : "red"}>
+            <Typography variant="body2" color={isStarted ? "green" : "red"}  sx={{fontFamily: "'Poppins', sans-serif" }}>
               {" "}
               {isStarted ? "Started" : "Not Yet Started"}{" "}
             </Typography>
