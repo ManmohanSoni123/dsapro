@@ -31,6 +31,7 @@ import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
+import Filters from "./Filters";
 
 function ProblemsList() {
   const param = useParams();
@@ -40,6 +41,7 @@ function ProblemsList() {
   const [loading, setLoading] = useState(true);
   const [solvedQuestions, setSolvedQuestions] = useState([]);
   const [searchItem, setsearchItem] = useState("");
+  const [filter, setFilter] = useState("all");
   const dispatch = useDispatch();
   // console.log(param.dsType);
   const allData = useSelector((state) => state.Dsa450.Dsasheet);
@@ -88,6 +90,7 @@ function ProblemsList() {
   }, [userId]);
 
   let toPrintData = [];
+
   let index = 1;
   for (let i = 0; i < allData.length; ++i) {
     if (allData[i].Topic === param.dsType) {
@@ -117,6 +120,40 @@ function ProblemsList() {
       ++index;
     }
   }
+  let totalQns = toPrintData.length;
+
+  if (filter === "solved") {
+    let index = 1;
+    let tempArray = [];
+    for (let i = 0; i < toPrintData.length; ++i) {
+      if (toPrintData[i].solved === true) {
+        tempArray.push({
+          ...toPrintData[i],
+          sNo: index,
+        });
+        ++index;
+      }
+    }
+    toPrintData = [...tempArray];
+  } else if (filter === "unsolved") {
+    let index = 1;
+    let tempArray = [];
+    for (let i = 0; i < toPrintData.length; ++i) {
+      if (toPrintData[i].solved === false) {
+        tempArray.push({
+          ...toPrintData[i],
+          sNo: index,
+        });
+        ++index;
+      }
+    }
+    toPrintData = [...tempArray];
+  }
+
+  const filterHandler = (filter) => {
+    setFilter(filter);
+  };
+
   // console.log(toPrintData);
   const pushSolvedInDatabase = (tempArray) => {
     // console.log("I amcc");
@@ -212,7 +249,7 @@ function ProblemsList() {
               <Divider sx={{ height: 30, m: 0.5 }} orientation="vertical" />
               <InputBase
                 name="title"
-                sx={{ width: 600 }}
+                sx={{ width: "90%" }}
                 placeholder="Search Problem"
                 color="#212121"
                 value={searchItem}
@@ -225,6 +262,7 @@ function ProblemsList() {
             </Paper>
           </div>
           <div style={{ marginTop: "2%" }}>
+            <Filters filter={filterHandler} filterName={filter} />
             <Paper
               component="div"
               elevation="2"
@@ -256,7 +294,7 @@ function ProblemsList() {
                         align="center"
                         sx={{ backgroundColor: "#975EAB", color: "white" }}
                       >
-                        Done({solvedQuestions.length}/{toPrintData.length})
+                        Done({solvedQuestions.length}/{totalQns})
                       </TableCell>
                     </TableRow>
                   </TableHead>
