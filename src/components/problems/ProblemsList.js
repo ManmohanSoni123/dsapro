@@ -15,6 +15,7 @@ import {
   InputBase,
   Box,
 } from "@mui/material";
+
 import SearchIcon from "@mui/icons-material/Search";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import { useParams } from "react-router-dom";
@@ -144,7 +145,7 @@ function ProblemsList() {
       {!loading && (
         <div style={{ marginTop: "7%" }}>
           <div style={{ marginBottom: "2%" }}>
-            <Typography variant="h3" align="center">
+            <Typography variant="h3" align="center" sx={{ color: "#431e42" }}>
               <AutoAwesomeIcon />
               {param.dsType}
             </Typography>
@@ -270,7 +271,8 @@ function ProblemsList() {
             </Paper>
           </div>
         </div>
-      )}
+      )
+      }
     </>
   );
 }

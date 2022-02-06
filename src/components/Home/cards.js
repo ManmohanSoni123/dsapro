@@ -63,13 +63,13 @@ function Cards(props) {
         }}
       >
         <Card sx={[{
-          width: 230, height: 303, background: 'linear-gradient(45deg, #b380b9 30%, #7575b8 90%)', color: 'black', cursor: "pointer",
+          width: 230, height: 303, background: 'linear-gradient(45deg, #9c55a7 30%, #e273df 90%)', color: 'black', cursor: "pointer",
         },]}>
           <CardMedia
             sx={[
               {
                 width: 180,
-                height: 180,
+                height: 175,
                 margin: "auto auto 5px auto",
               },
             ]}
@@ -82,8 +82,8 @@ function Cards(props) {
               color: "black",
             }}
           >
-            <Typography variant="h5">{props.Topic}</Typography>
-            <Typography variant="body1">
+            <Typography variant="h6">{props.Topic}</Typography>
+            <Typography variant="body2">
               Done Questions: {doneQuestions}/{props.Total}
             </Typography>
             <Typography variant="body2" color={isStarted ? "green" : "red"}>

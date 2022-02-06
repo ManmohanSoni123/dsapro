@@ -57,12 +57,12 @@ function Login() {
       <div style={{
         backgroundImage: `url(${b2})`, height: '99vh', backgroundPosition: 'center', backgroundSize: 'cover',
       }} />
-      <Box component={Paper} elevation={15} sx={{ width: 'fit-content', position: 'absolute', top: '50%', left: '50%', margin: '-25px 0 0 -25px' }} > <Button onClick={handleSignup} size='large' variant='contained' sx={{
+      <Box component={Paper} elevation={15} sx={{ width: 'fit-content', position: 'absolute', top: '48.8%', left: '42.5%', margin: '-25px 0 0 -25px' }} > <Button onClick={handleSignup} size='large' variant='contained' sx={{
         background: '#b380b9', '&:hover': {
           background: '#7575b8',
           transform: 'scale(1.5)'
         }
-      }} >Sign In</Button></Box>
+      }} >Sign In Using Google Account</Button></Box>
     </div>
   );
 }

@@ -11,6 +11,7 @@ import {
   Paper,
   Box,
 } from "@mui/material";
+
 // import { useUserAuth } from "../context/userContext";
 import { auth } from "../firebase";
 import { WindMillLoading } from "react-loadingg";
@@ -93,11 +94,11 @@ function HomeSc(props) {
               onClick={sout}
               variant="contained"
               sx={{
-                background: "linear-gradient(45deg, #b380b9 30%, #7575b8 90%)",
-                color: "black",
+                background: "linear-gradient(45deg, #9c55a7 30%, #e273df 90%)",
+                color: "white",
                 "&:hover": {
                   background:
-                    "linear-gradient(45deg, #b380b9 30%, #7575b8 90%)",
+                    "linear-gradient(45deg, #ddbadc 30%, #ccbbdb 90%)",
                   color: "black",
                 },
               }}
@@ -105,6 +106,7 @@ function HomeSc(props) {
               Sign Out
             </Button>
           </Box>
+
           <Card
             component={Paper}
             elevation={15}
@@ -113,17 +115,18 @@ function HomeSc(props) {
               width: 350,
               height: 100,
               margin: "auto",
-              color: "black",
-              background: "linear-gradient(45deg, #b380b9 30%, #7575b8 90%)",
-              color: "black",
+              background: "linear-gradient(45deg, #9c55a7 30%, #e273df 90%)",
+              color: "white",
             }}
           >
             <CardContent>
-              <Typography variant="h4" sx={{ margin: "auto" }}>
+              <Typography variant="h4" sx={{ margin: "auto", position: 'absolute', top: '11.3%', left: "42.8%" }}>
                 DSA Crackers
               </Typography>
             </CardContent>
           </Card>
+
+
           <Grid container align="center" sx={{ background: "focus.png", marginTop: "2%" }}>
             {topics.map((item) => (
               <Grid key={item.Topic} xl={12} sm={3} xs={6}>
