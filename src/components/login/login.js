@@ -1,11 +1,11 @@
 import React from "react";
-import { Box, Paper, Button } from '@mui/material';
+import { Box, Paper, Button } from "@mui/material";
 import app from "../firebase";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { loginActions } from "../redux/auth";
 import { useNavigate } from "react-router-dom";
-import b2 from './b2.jpg';
+import b2 from "./b2.jpg";
 
 function Login() {
   const dispatch = useDispatch();
@@ -15,9 +15,9 @@ function Login() {
   const userId = localStorage.getItem("user");
   console.log(userId);
   if (userId !== null) {
-    console.log("inside if");
+    // console.log("inside if");
     dispatch(loginActions.login(userId));
-    navigate("/home");
+    navigate("/");
   }
 
   const handleSignup = () => {
@@ -54,15 +54,41 @@ function Login() {
   };
   return (
     <div>
-      <div style={{
-        backgroundImage: `url(${b2})`, height: '99vh', backgroundPosition: 'center', backgroundSize: 'cover',
-      }} />
-      <Box component={Paper} elevation={15} sx={{ width: 'fit-content', position: 'absolute', top: '48.8%', left: '42.5%', margin: '-25px 0 0 -25px' }} > <Button onClick={handleSignup} size='large' variant='contained' sx={{
-        background: '#b380b9', '&:hover': {
-          background: '#7575b8',
-          transform: 'scale(1.5)'
-        }
-      }} >Sign In Using Google Account</Button></Box>
+      <div
+        style={{
+          backgroundImage: `url(${b2})`,
+          height: "99vh",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+      />
+      <Box
+        component={Paper}
+        elevation={15}
+        sx={{
+          width: "fit-content",
+          position: "absolute",
+          top: "48.8%",
+          left: "42.5%",
+          margin: "-25px 0 0 -25px",
+        }}
+      >
+        {" "}
+        <Button
+          onClick={handleSignup}
+          size="large"
+          variant="contained"
+          sx={{
+            background: "#b380b9",
+            "&:hover": {
+              background: "#7575b8",
+              transform: "scale(1.5)",
+            },
+          }}
+        >
+          Sign In Using Google Account
+        </Button>
+      </Box>
     </div>
   );
 }

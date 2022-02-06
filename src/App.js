@@ -10,6 +10,7 @@ const Login = React.lazy(() => import("./components/login/login"));
 const ProblemsList = React.lazy(() =>
   import("./components/problems/ProblemsList")
 );
+const PageNotFound = React.lazy(() =>
 
 function App() {
   return (
