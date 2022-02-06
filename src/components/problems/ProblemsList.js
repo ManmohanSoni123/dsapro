@@ -25,6 +25,7 @@ import { useDispatch } from "react-redux";
 import { sheetDataActions } from "../redux/sheetData";
 import { WindMillLoading } from "react-loadingg";
 import { Link } from "react-router-dom";
+
 function ProblemsList() {
   const param = useParams();
 
@@ -32,7 +33,7 @@ function ProblemsList() {
   const dbRef = ref(db);
   const [loading, setLoading] = useState(true);
   const [solvedQuestions, setSolvedQuestions] = useState([]);
-
+  const [searchItem,setsearchItem] = useState("");
   const dispatch = useDispatch();
   // console.log(param.dsType);
   const allData = useSelector((state) => state.Dsa450.Dsasheet);
@@ -141,7 +142,7 @@ function ProblemsList() {
           <div style={{ marginBottom: "2%" }}>
             <Typography variant="h3" align="center">
               <AutoAwesomeIcon />
-              Topic_Name
+              {param.dsType}
             </Typography>
             <Typography variant="body1" align="center">
              <Link to="/"> Topics/ </Link>
@@ -169,6 +170,10 @@ function ProblemsList() {
                 sx={{ width: 600 }}
                 placeholder="Search Problem"
                 color="#212121"
+                value={searchItem}
+                onChange={(event) => {
+                  setsearchItem(event.target.value);
+                }}
               />
               <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
               <Button>Reset</Button>
@@ -213,7 +218,12 @@ function ProblemsList() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {toPrintData.map((item) => (
+                    {toPrintData.filter((item) => {
+                      if(searchItem == "")
+                      return(item.Problem);
+                      else if(item.Problem.toLowerCase().includes(searchItem.toLowerCase()))
+                      return (item);
+                    }).map((item) => (
                       <TableRow key={item.sNo}>
                         <TableCell align="center">{item.sNo}</TableCell>
                         <TableCell align="center" style={{ color: "white" }}>
