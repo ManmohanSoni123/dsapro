@@ -20,6 +20,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { sheetDataActions } from "../redux/sheetData";
 import { signOut } from "firebase/auth";
 import { loginActions } from "../redux/auth";
+import Footer from "../Footer/Footer";
+
 function HomeSc(props) {
   const db = getDatabase();
   const dbRef = ref(db);
@@ -120,20 +122,34 @@ function HomeSc(props) {
             }}
           >
             <CardContent>
-              <Typography variant="h4" sx={{ margin: "auto", position: 'absolute', top: '11.3%', left: "42.8%", fontFamily: "'Arvo', serif"}}>
+              <Typography
+                variant="h4"
+                sx={{
+                  margin: "auto",
+                  position: "absolute",
+                  top: "11.3%",
+                  left: "42.8%",
+                  fontFamily: "'Arvo', serif",
+                }}
+              >
                 DSA Cracker
               </Typography>
             </CardContent>
           </Card>
 
-
-          <Grid container align="center" sx={{ background: "focus.png", marginTop: "2%" }} spacing={5} >
+          <Grid
+            container
+            align="center"
+            sx={{ background: "focus.png", marginTop: "2%" }}
+            spacing={5}
+          >
             {topics.map((item) => (
               <Grid key={item.Topic} xl={12} sm={6} xs={12} lg={3} md={3}>
                 <Cards Topic={item.Topic} Total={item.Total} />
               </Grid>
             ))}
           </Grid>
+          <Footer />
         </div>
       )}
     </div>
