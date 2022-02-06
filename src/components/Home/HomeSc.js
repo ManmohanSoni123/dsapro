@@ -76,7 +76,7 @@ function HomeSc(props) {
   }
   function sout() {
     signOut(auth);
-    localStorage.clear();
+    localStorage.removeItem("user");
     dispatch(loginActions.logout());
     navigate("/login");
   }

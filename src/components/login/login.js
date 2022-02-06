@@ -32,7 +32,7 @@ function Login() {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
-        console.log(user.uid);
+
         localStorage.setItem("user", user.uid);
 
         dispatch(loginActions.login(user.uid));

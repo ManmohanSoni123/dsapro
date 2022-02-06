@@ -1,26 +1,31 @@
 import "./App.css";
+import React, { Suspense } from "react";
 import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
-import HomeSc from "./components/Home/HomeSc";
-import Login from "./components/login/login";
-// import { UserAuthContextProvider } from "./components/context/userContext";
-import PrivateRoutes from "./components/routers/privateRoutes";
-import ProblemsList from "./components/problems/ProblemsList";
+import { WindMillLoading } from "react-loadingg";
+const PrivateRoutes = React.lazy(() =>
+  import("./components/routers/privateRoutes")
+);
+const HomeSc = React.lazy(() => import("./components/Home/HomeSc"));
+const Login = React.lazy(() => import("./components/login/login"));
+const ProblemsList = React.lazy(() =>
+  import("./components/problems/ProblemsList")
+);
 
 function App() {
   return (
     <div className="App">
-      {/* <UserAuthContextProvider> */}
       <BrowserRouter>
-        <Routes>
-          <Route path="/problems" element={<Navigate replace to="/home" />} />
-          <Route element={<PrivateRoutes />}>
-            <Route path="/" element={<HomeSc />} />
-            <Route path="/problems/:dsType" element={<ProblemsList />} />
-          </Route>
+        <Suspense fallback={<WindMillLoading color="black" size="large" />}>
+          <Routes>
+            <Route path="/problems" element={<Navigate replace to="/home" />} />
+            <Route element={<PrivateRoutes />}>
+              <Route path="/" element={<HomeSc />} />
+              <Route path="/problems/:dsType" element={<ProblemsList />} />
+            </Route>
             <Route path="/login" element={<Login />} />
-        </Routes>
+          </Routes>
+        </Suspense>
       </BrowserRouter>
-      {/* </UserAuthContextProvider> */}
     </div>
   );
 }
