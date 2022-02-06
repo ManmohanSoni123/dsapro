@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Cards from "./cards";
 import app from "../firebase";
 import { getDatabase, ref, child, get } from "firebase/database";
+import b2 from "../login/b2.jpg";
 import {
   Grid,
   Button,
@@ -84,14 +85,25 @@ function HomeSc(props) {
     navigate("/login");
   }
   return (
-    <div>
-      {/* <Button onClick={sout} variant="contained">
-        SignOut
-      </Button> */}
+    <div
+      style={{
+        backgroundImage: `url(${b2})`,
+        height: "99vh",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      }}
+    >
       {loading && <WindMillLoading color="black" size="large" />}
       {!loading && (
         <div>
-          <Box sx={{ marginX: "90.5%", width: "10%", marginTop: "1%" }}>
+          <Box
+            sx={{
+              marginX: "45%",
+              width: "10%",
+              marginTop: "1%",
+              marginBottom: "1%",
+            }}
+          >
             <Button
               onClick={sout}
               variant="contained"

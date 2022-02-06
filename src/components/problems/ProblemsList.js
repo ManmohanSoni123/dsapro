@@ -15,10 +15,12 @@ import {
   InputBase,
   Box,
 } from "@mui/material";
-
+import LinkIcon from "@mui/icons-material/Link";
+import b2 from "../login/b2.jpg";
+import { loginActions } from "../redux/auth";
 import SearchIcon from "@mui/icons-material/Search";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import app from "../firebase";
 import { getDatabase, ref, child, get, set } from "firebase/database";
 import { useSelector } from "react-redux";
@@ -26,10 +28,13 @@ import { useDispatch } from "react-redux";
 import { sheetDataActions } from "../redux/sheetData";
 import { WindMillLoading } from "react-loadingg";
 import { Link } from "react-router-dom";
+import Footer from "../Footer/Footer";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
 
 function ProblemsList() {
   const param = useParams();
-
+  const navigate = useNavigate();
   const db = getDatabase();
   const dbRef = ref(db);
   const [loading, setLoading] = useState(true);
@@ -139,13 +144,48 @@ function ProblemsList() {
     setSolvedQuestions([]);
     pushSolvedInDatabase([]);
   };
+  const sout = () => {
+    signOut(auth);
+    localStorage.removeItem("user");
+    dispatch(loginActions.logout());
+    navigate("/login");
+  };
   return (
-    <>
+    <div
+      style={{
+        backgroundImage: `url(${b2})`,
+        height: "99vh",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      }}
+    >
       {loading && <WindMillLoading color="black" size="large" />}
       {!loading && (
-        <div style={{ marginTop: "7%" }}>
+        <div style={{ marginTop: "3%" }}>
+          <Box sx={{ marginX: "45%", width: "10%", marginBottom: "1%" }}>
+            <Button
+              onClick={sout}
+              variant="contained"
+              sx={{
+                background: "linear-gradient(45deg, #9c55a7 30%, #e273df 90%)",
+                color: "white",
+                "&:hover": {
+                  background:
+                    "linear-gradient(45deg, #ddbadc 30%, #ccbbdb 90%)",
+                  color: "black",
+                },
+              }}
+            >
+              Sign Out
+            </Button>
+          </Box>
+
           <div style={{ marginBottom: "2%" }}>
-            <Typography variant="h3" align="center" sx={{ color: "#431e42",fontFamily: "'Arvo', serif" }}>
+            <Typography
+              variant="h3"
+              align="center"
+              sx={{ color: "#431e42", fontFamily: "'Arvo', serif" }}
+            >
               <AutoAwesomeIcon />
               {param.dsType}
             </Typography>
@@ -188,11 +228,9 @@ function ProblemsList() {
             <Paper
               component="div"
               elevation="2"
-              sx={{ width: "70%", overflow: "hidden", margin: "auto" }}
+              sx={{ width: "80%", overflow: "hidden", margin: "auto" }}
             >
-              <TableContainer
-                sx={{ maxHeight: 440, backgroundColor: "#C993C7" }}
-              >
+              <TableContainer sx={{ backgroundColor: "#C993C7" }}>
                 <Table stickyHeader>
                   <TableHead>
                     <TableRow>
@@ -239,12 +277,18 @@ function ProblemsList() {
                           <TableCell align="center" style={{ color: "white" }}>
                             <a
                               href={item.URL}
-                              style={{ color: "white", textDecoration: "none" }}
+                              style={{
+                                color: "white",
+                                textDecoration: "none",
+                              }}
                               target="_blank"
                             >
-                            <Typography sx={{fontFamily: "'Poppins', sans-serif" }}>
-                              {item.Problem}
-                            </Typography>
+                              <Typography
+                                sx={{ fontFamily: "'Poppins', sans-serif" }}
+                              >
+                                {item.Problem}
+                                <LinkIcon fontSize="large" />
+                              </Typography>
                             </a>
                           </TableCell>
                           <TableCell align="center">
@@ -272,10 +316,10 @@ function ProblemsList() {
               </TableContainer>
             </Paper>
           </div>
+          <Footer />
         </div>
-      )
-      }
-    </>
+      )}
+    </div>
   );
 }
 export default ProblemsList;

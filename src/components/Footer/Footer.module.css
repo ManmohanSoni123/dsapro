@@ -2,7 +2,7 @@ footer {
   height: 5rem;
   line-height: 5rem;
   text-align: center;
-
+  margin-top: 6px;
   background: linear-gradient(45deg, #9c55a7 30%, #e273df 90%);
 }
 span {
