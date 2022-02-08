@@ -15,7 +15,7 @@ function Filters(props) {
         background: "linear-gradient(45deg, #9c55a7 30%, #e273df 90%)",
         color: "white",
         display: "inline-block",
-        width: "80%",
+        width: "98%",
       }}
     >
       <RadioGroup

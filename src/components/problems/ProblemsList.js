@@ -199,7 +199,7 @@ function ProblemsList() {
       {loading && <WindMillLoading color="black" size="large" />}
       {!loading && (
         <div style={{ marginTop: "3%" }}>
-          <Box sx={{ marginX: "45%", width: "10%", marginBottom: "1%" }}>
+          <Box sx={{   width:"fullWidth"}}>
             <Button
               onClick={sout}
               variant="contained"
@@ -211,6 +211,8 @@ function ProblemsList() {
                     "linear-gradient(45deg, #ddbadc 30%, #ccbbdb 90%)",
                   color: "black",
                 },
+                  align:"center",
+                  width:"7rem"
               }}
             >
               Sign Out
@@ -239,7 +241,7 @@ function ProblemsList() {
                 p: "2px 4px",
                 mt: 2,
                 display: "flex",
-                width: 600,
+                width: "60vw",
                 margin: "auto",
               }}
             >
@@ -266,7 +268,7 @@ function ProblemsList() {
             <Paper
               component="div"
               elevation="2"
-              sx={{ width: "80%", overflow: "hidden", margin: "auto" }}
+              sx={{ width: "98%", overflow: "hidden", margin: "auto" }}
             >
               <TableContainer sx={{ backgroundColor: "#C993C7" }}>
                 <Table stickyHeader>

@@ -102,6 +102,7 @@ function HomeSc(props) {
               width: "10%",
               marginTop: "1%",
               marginBottom: "1%",
+              width:"fullWidth"
             }}
           >
             <Button
@@ -115,18 +116,22 @@ function HomeSc(props) {
                     "linear-gradient(45deg, #ddbadc 30%, #ccbbdb 90%)",
                   color: "black",
                 },
+                align:"center",
+                width:"7rem"
               }}
             >
               Sign Out
             </Button>
           </Box>
+            
 
+           
           <Card
             component={Paper}
             elevation={15}
             sx={{
               borderRadius: "10px",
-              width: 350,
+              width: "19rem",
               height: 100,
               margin: "auto",
               background: "linear-gradient(45deg, #9c55a7 30%, #e273df 90%)",
@@ -138,17 +143,18 @@ function HomeSc(props) {
                 variant="h4"
                 sx={{
                   margin: "auto",
-                  position: "absolute",
+                  // position: "absolute",
                   top: "11.3%",
                   left: "42.8%",
                   fontFamily: "'Arvo', serif",
+                  align:"center"
                 }}
               >
                 DSA Cracker
               </Typography>
             </CardContent>
           </Card>
-
+           
           <Grid
             container
             align="center"
