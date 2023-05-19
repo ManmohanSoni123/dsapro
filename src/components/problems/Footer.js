@@ -3,7 +3,7 @@
 // function Footer() {
 //   return (
 //     <footer>
-//       <Typography variant='h6' >©Copyright to Manmohan Soni Brajesh Kumar Niteen Kumar</Typography>
+//       <Typography variant='h6' >©Copyright to ohan Soni Brajesh Kumar Niteen Kumar</Typography>
 //     </footer>
 //   );
 // }

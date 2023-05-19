@@ -12,8 +12,6 @@ import {
   Paper,
   Box,
 } from "@mui/material";
-
-// import { useUserAuth } from "../context/userContext";
 import { auth } from "../firebase";
 import { WindMillLoading } from "react-loadingg";
 import { useNavigate } from "react-router-dom";
